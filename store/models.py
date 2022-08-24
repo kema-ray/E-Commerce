@@ -1,5 +1,3 @@
-from audioop import maxpp
-from unicodedata import name
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -19,3 +17,12 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+class Order(models.Model):
+    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL,null=True, blank=True)
+    date_ordered = models.DateTimeField(auto_now_add=True)
+    complete = models.BooleanField(default=False)
+    transaction_id = models.CharField(max_length=100)
+
+    def __str__(self):
+        return str(self.id)
