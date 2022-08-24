@@ -25,7 +25,7 @@ class Order(models.Model):
     transaction_id = models.CharField(max_length=100,null=True)
 
     def __str__(self):
-        return str(self.id)
+        return (self.id)
 
 class OrderItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
