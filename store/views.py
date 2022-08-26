@@ -29,5 +29,7 @@ def checkout(request):
     context = {'items':items, 'order':order}
     return render(request,'store/checkout.html',context )
 
+from django.views.decorators.csrf import csrf_exempt
+@csrf_exempt
 def updateItem(request):
     return JsonResponse('Item was added', safe=False)
