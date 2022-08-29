@@ -16,7 +16,7 @@ def store(request):
         cartItems = order['get_cart_items']
     
     products = Product.objects.all()
-    context = {'products':products,'cartItems':cartItems}
+    context = {'products':products,'cartItems':cartItems,'shipping':False}
     return render(request,'store/store.html',context )
 
 def cart(request):
@@ -26,7 +26,7 @@ def cart(request):
         items = order.orderitem_set.all()
     else:
         items = []
-        order = {'get_cart_total':0,'get_cart_items':0}
+        order = {'get_cart_total':0,'get_cart_items':0,'shipping':False}
     context = {'items':items, 'order':order}
     return render(request,'store/cart.html',context )
 
@@ -40,7 +40,7 @@ def checkout(request):
         items = []
         order = {'get_cart_total':0,'get_cart_items':0}
         cartItems = order['get_cart_items']
-    context = {'items':items, 'order':order,'cartItems': cartItems}
+    context = {'items':items, 'order':order,'cartItems': cartItems,'shipping':False}
     return render(request,'store/checkout.html',context )
 
 def updateItem(request):
