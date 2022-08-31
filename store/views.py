@@ -25,10 +25,18 @@ def cart(request):
         customer = request.user.customer
         order, created = Order.objects.get_or_create(customer=customer,complete=False)
         items = order.orderitem_set.all()
+        cartItems=order.get_cart_items
     else:
+        try:
+            cart = json.loads(request.COOKIES['cart'])
+        except:
+            cart = {}
+        print('Cart:',cart)
         items = []
         order = {'get_cart_total':0,'get_cart_items':0,'shipping':False}
-    context = {'items':items, 'order':order}
+        cartItems = order['get_cart_items']
+        
+    context = {'items':items, 'order':order,'cartItems':cartItems}
     return render(request,'store/cart.html',context )
 
 def checkout(request):
