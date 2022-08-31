@@ -68,3 +68,5 @@ def updateItem(request):
         orderItem.delete()
 
     return JsonResponse('Item was added', safe=False)
+
+
