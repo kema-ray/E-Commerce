@@ -45,6 +45,12 @@ INSTALLED_APPS = [
     'cloudinary',
 ]
 
+cloudinary.config(
+  cloud_name = "kema-ray",
+  api_key = "833725492432298",
+  api_secret = "yKG83dkRqJ8xtG0-r3ekbU10I98",
+)
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -77,11 +83,12 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 
 
 # adding config
-cloudinary.config( 
-  cloud_name = "kema-ray", 
-  api_key = "833725492432298", 
-  api_secret = "yKG83dkRqJ8xtG0-r3ekbU10I98" 
-)
+# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+# CLOUDINARY_STORAGE ={
+#   'CLOUD_NAME': "kema-ray", 
+#   'API_KEY':833725492432298, 
+#   'API_SECRET': "yKG83dkRqJ8xtG0-r3ekbU10I98" 
+# }
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
@@ -136,6 +143,13 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+CLOUDINARY_STORAGE ={
+  'CLOUD_NAME': "kema-ray", 
+  'API_KEY':833725492432298, 
+  'API_SECRET': "yKG83dkRqJ8xtG0-r3ekbU10I98" 
+}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
