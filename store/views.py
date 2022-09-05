@@ -3,19 +3,20 @@ from .models import *
 from django.http import JsonResponse
 import json
 import datetime
-from .utils import *
+from .utils import cookieCart, cartData, guestOrder
+
 # Create your views here.
 def store(request):
     data = cartData(request)
-	
-    cartItems = data['cartItems']
-    # order = data['order']
-    # items = data['items']
-    
-    products = Product.objects.all()
-    context = {'products':products,'cartItems':cartItems,'shipping':False}
-    return render(request,'store/store.html',context )
 
+    cartItems = data['cartItems']
+    order = data['order']
+    items = data['items']
+
+    products = Product.objects.all()
+    context = {'products':products,'cartItems':cartItems}
+    return render(request,'store/store.html',context)
+    
 def cart(request):
     data = cartData(request)
 	
